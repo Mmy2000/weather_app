@@ -1,0 +1,38 @@
+.item 
+{
+    position: relative;
+    cursor: pointer;
+}
+.item-caption
+{
+    background-color: #fff;
+    padding: 10px;
+    position: absolute;
+    bottom: 30px;
+    left: 10%;
+    width: 80%;
+}
+.ligthbox-container
+{
+    background-color: rgba(0,0,0,0.7)
+}
+.ligthbox-item
+{
+    width: 50%;
+    height: 70vh;
+    background-image: url(../images/project1/g01.jpeg);
+    background-size: cover;
+}
+.ligthbox-item i 
+{
+    cursor: pointer;
+
+    font-size: 22px;
+    margin: 10px;
+}
+#close
+{
+    position: absolute;
+    top: 0;
+    right: 0;
+}
