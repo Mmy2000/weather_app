@@ -37,6 +37,7 @@ nav ul .active{
     background: #1e202b;
     color: white;
     border-radius: 30px;
+    border: none;
 }
 .home .btn-style{
     position: absolute;
@@ -47,6 +48,7 @@ nav ul .active{
     background: #009ad8;
     border-radius: 30px;
     color: white;
+    border: none;
 }
 .home input:focus{
     box-shadow: none;
@@ -54,4 +56,52 @@ nav ul .active{
 }
 .demo{
     bottom: 50px;
+}
+.forecast-table{
+    height: 50vh;
+    background-color: #1e202b;
+}
+footer input{
+    width: 100%;
+    padding: 20px 50px 20px 20px;
+    background: #1e202b;
+    color: white;
+    border-radius: 30px;
+    border: none;
+}
+footer input:focus{
+    box-shadow: none;
+    outline: 0;
+}
+footer .btn-style-2{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    bottom: 5px;
+    padding: 0 40px;
+    background: #009ad8;
+    border-radius: 30px;
+    color: white;
+    border: none;
+}
+footer .icons i{
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    border-radius: 50%;
+    background: #1e202b;
+    color: #009ad8;
+    text-align: center;
+    line-height: 1.8;
+    -webkit-transition: 0.3s ease;
+    transition: 0.3s ease;
+    font-size: 20px;
+    font-size: 1.4285714286em;
+}
+footer .icons i:hover{
+    background: #009ad8;
+    color: white;
+}
+footer{
+    background: #262936;
 }
