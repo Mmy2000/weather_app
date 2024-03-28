@@ -23,3 +23,35 @@ nav ul .active{
     border-color: #009ad8 !important;
     color: #009ad8 !important;
 }
+.home{
+    height: 50vh;
+    background-image: url(../images/banner.png);
+    background-position: center center;
+    background-size: cover;
+    position: relative;
+
+}
+.home input{
+    width: 100%;
+    padding: 20px 50px 20px 20px;
+    background: #1e202b;
+    color: white;
+    border-radius: 30px;
+}
+.home .btn-style{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    bottom: 5px;
+    padding: 0 40px;
+    background: #009ad8;
+    border-radius: 30px;
+    color: white;
+}
+.home input:focus{
+    box-shadow: none;
+    outline: 0;
+}
+.demo{
+    bottom: 50px;
+}
