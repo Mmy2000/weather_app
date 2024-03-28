@@ -58,7 +58,6 @@ nav ul .active{
     bottom: 50px;
 }
 .forecast-table{
-    height: 60vh;
     background-color: #1e202b;
 }
 footer input{
@@ -161,4 +160,9 @@ footer{
     margin-top: 10px;
     font-size: 14px;
     color: #888;
+}
+@media screen and (max-width: 768px) {
+    .weather-card {
+        width: calc(50% - 20px);
+    }
 }
