@@ -58,7 +58,7 @@ nav ul .active{
     bottom: 50px;
 }
 .forecast-table{
-    height: 50vh;
+    height: 60vh;
     background-color: #1e202b;
 }
 footer input{
@@ -109,15 +109,17 @@ footer{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+
 }
 
 .weather-card {
     background-color: #262936;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin: 10px;
+    margin: 20px 10px;
     padding: 20px;
     width: 250px;
+
 }
 
 .today {
