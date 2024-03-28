@@ -1,27 +1,64 @@
-// async function search(a) {
-//     let t = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=7d77b96c972b4d119a3151101212704&q=${a}&days=3`);
-//     if (t.ok && 400 != t.status) {
-//         let a = await t.json();
-//         displayCurrent(a.location, a.current), displayAnother(a.forecast.forecastday)
-//     }
-// }
-// document.getElementById("search").addEventListener("keyup", a => {
-//     search(a.target.value)
-// });
-// var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-// const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
-// function displayCurrent(a, t) {
-//     if (null != t) {
-//         var e = new Date(t.last_updated.replace(" ", "T"));
-//         let n = `<div class="today forecast">\n    <div class="forecast-header"  id="today">\n    <div class="day">${days[e.getDay()]}</div>\n    <div class=" date">${e.getDate()+monthNames[e.getMonth()]}</div>\n    </div> \x3c!-- .forecast-header --\x3e\n    <div class="forecast-content" id="current">\n    <div class="location">${a.name}</div>\n    <div class="degree">\n        <div class="num">${t.temp_c}<sup>o</sup>C</div>\n      \n        <div class="forecast-icon">\n            <img src="https:${t.condition.icon}" alt="" width=90>\n        </div>\t\n    \n    </div>\n    <div class="custom">${t.condition.text}</div>\n    <span><img src="images/icon-umberella.png" alt="">20%</span>\n\t\t\t\t\t\t\t\t<span><img src="images/icon-wind.png" alt="">18km/h</span>\n\t\t\t\t\t\t\t\t<span><img src="images/icon-compass.png" alt="">East</span>\n    </div>\n</div>`;
-//         document.getElementById("forecast").innerHTML = n
-//     }
-// }
+async function search(city) {
+    try {
+        let response = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=7d77b96c972b4d119a3151101212704&q=${city}&days=3`);
+        if (!response.ok) {
+            throw new Error('Failed to fetch weather data');
+        }
+        let data = await response.json();
+        displayWeather(data.location, data.current, data.forecast.forecastday);
+    } catch (error) {
+        console.error(error.message);
+        // Display error message to the user
+    }
+}
 
-// function displayAnother(a) {
-//     let t = "";
-//     for (let e = 1; e < a.length; e++) t += `\t<div class="forecast">\n        <div class="forecast-header">\n            <div class="day">${days[new Date(a[e].date.replace(" ","T")).getDay()]}</div>\n        </div> \x3c!-- .forecast-header --\x3e\n        <div class="forecast-content">\n            <div class="forecast-icon">\n                <img src="https:${a[e].day.condition.icon}" alt="" width=48>\n            </div>\n            <div class="degree">${a[e].day.maxtemp_c}<sup>o</sup>C</div>\n            <small>${a[e].day.mintemp_c}<sup>o</sup></small>\n            <div class="custom">${a[e].day.condition.text}</div>\n        </div>\n        </div>`;
-//     document.getElementById("forecast").innerHTML += t
-// }
-// search("cairo");
+function displayWeather(location, current, forecast) {
+    let forecastHTML = '';
+
+    // Display current weather
+    forecastHTML += `
+        <div class="weather-card today">
+            <div class="day">${days[new Date(current.last_updated).getDay()]}</div>
+            <div class="date">${new Date(current.last_updated).getDate()} ${monthNames[new Date(current.last_updated).getMonth()]}</div>
+            <div class="location">${location.name}</div>
+            <div class="temperature">${current.temp_c}°C</div>
+            <div class="weather-icon">
+                <img src="https:${current.condition.icon}" alt="${current.condition.text}">
+            </div>
+            <div class="condition">${current.condition.text}</div>
+            <div class="details">
+                <span>Humidity: ${current.humidity}%</span>
+                <span>Wind: ${current.wind_kph} km/h</span>
+            </div>
+        </div>
+    `;
+
+    // Display forecast for next days
+    forecast.forEach((day, index) => {
+        if (index !== 0) { // Skip today
+            forecastHTML += `
+                <div class="weather-card">
+                    <div class="day">${days[new Date(day.date).getDay()]}</div>
+                    <div class="temperature">${day.day.maxtemp_c}°C / ${day.day.mintemp_c}°C</div>
+                    <div class="weather-icon">
+                        <img src="https:${day.day.condition.icon}" alt="${day.day.condition.text}">
+                    </div>
+                    <div class="condition">${day.day.condition.text}</div>
+                </div>
+            `;
+        }
+    });
+
+    document.getElementById("forecast").innerHTML = forecastHTML;
+}
+
+document.getElementById("searchInput").addEventListener("input", (e) => {
+    let city = e.target.value.trim();
+    if (city !== '') {
+        search(city);
+    }
+    });
+search("Cairo");

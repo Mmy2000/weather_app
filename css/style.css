@@ -105,3 +105,58 @@ footer .icons i:hover{
 footer{
     background: #262936;
 }
+#forecast {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.weather-card {
+    background-color: #262936;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    padding: 20px;
+    width: 250px;
+}
+
+.today {
+    background-color: #1e202b;
+}
+
+.weather-card .day {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.weather-card .date {
+    font-size: 16px;
+    color: #888;
+}
+
+.weather-card .location {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.weather-card .temperature {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.weather-card .weather-icon img {
+    max-width: 100px;
+    height: auto;
+}
+
+.weather-card .condition {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #888;
+}
+
+.weather-card .details {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #888;
+}
