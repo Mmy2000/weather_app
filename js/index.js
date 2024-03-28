@@ -3,20 +3,19 @@ const monthNames = ["January", "February", "March", "April", "May", "June", "Jul
 
 async function search(city) {
     try {
-        let response = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=7d77b96c972b4d119a3151101212704&q=${city}&days=3`);
+        var response = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=7d77b96c972b4d119a3151101212704&q=${city}&days=3`);
         if (!response.ok) {
             throw new Error('Failed to fetch weather data');
         }
-        let data = await response.json();
+        var data = await response.json();
         displayWeather(data.location, data.current, data.forecast.forecastday);
     } catch (error) {
         console.error(error.message);
-        // Display error message to the user
     }
 }
 
 function displayWeather(location, current, forecast) {
-    let forecastHTML = '';
+    var forecastHTML = '';
 
     // Display current weather
     forecastHTML += `
@@ -56,7 +55,7 @@ function displayWeather(location, current, forecast) {
 }
 
 document.getElementById("searchInput").addEventListener("input", (e) => {
-    let city = e.target.value.trim();
+    var city = e.target.value.trim();
     if (city !== '') {
         search(city);
     }
